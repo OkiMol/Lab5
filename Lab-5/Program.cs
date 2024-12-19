@@ -123,7 +123,8 @@ namespace Lab_5
             var isManual = Menu(0, options);
             if (isManual == 1)
             {
-                Console.WriteLine("Введите текст, состоящий из предложений, оканчивающихся ");
+                Console.WriteLine("Введите текст, состоящий из предложений, оканчивающихся завершающим знаком препинания и соответствующий письменым нормам.");
+                Console.CursorVisible = true;
                 text = Console.ReadLine();
             }
             else
@@ -395,6 +396,7 @@ namespace Lab_5
                     sentences[i] = "";
                     continue;
                 }
+                
                 var firstWordIndex = wordsAndPunctuation.FindIndex(w => WordPattern().IsMatch(w));
                 var lastWordIndex = wordsAndPunctuation.FindLastIndex(w => WordPattern().IsMatch(w));
                 wordsAndPunctuation.RemoveAt(lastWordIndex);
@@ -421,7 +423,7 @@ namespace Lab_5
             return result.Trim();
         }
 
-        [GeneratedRegex(@"^\w")]
+        [GeneratedRegex(@"\b\w+[\w\-']*\b")]
         private static partial Regex WordPattern();
 
         [GeneratedRegex(@"(?<=[.!?])\s+")]
